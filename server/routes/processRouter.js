@@ -1,8 +1,8 @@
 const Router = require('express')
 const router = new Router()
-const dataController = require('../controllers/dataController')
+const {sendData, getData} = require("../controllers/dataController");
 
-router.post('/', dataController.sendData)
-router.get('/',dataController.getData)
+router.post('/', sendData)
+router.get('/',getData)
 
 module.exports = router
