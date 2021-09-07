@@ -1,22 +1,16 @@
-const express = require('express')
-require('dotenv').config()
+import express from 'express';
+import dotenv from 'dotenv';
+import cors from 'cors';
+import processRouter from './routes/processRouter.js'
 
-const PORT = process.env.PORT || 5000
-const cors = require('cors')
-const router = require('./routes/index')
-const app = express()
+dotenv.config();
+
+const PORT = process.env.PORT || 5000;
+const app = express();
 
 
-app.use(cors())
-app.use(express.json())
-app.use('/', router)
+app.use(cors);
+app.use(express.json());
+app.use('/carpolicy', processRouter);
 
-const start = async () => {
-    try {
-        app.listen(PORT, () => console.log(`Server started on PORT ${PORT}`))
-    } catch (e) {
-        console.log(e)
-    }
-}
-start()
-
+app.listen(PORT, () => console.log("Server started on PORT: " + PORT));
