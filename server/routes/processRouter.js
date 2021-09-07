@@ -1,8 +1,9 @@
-const Router = require('express')
+import Router from 'express';
+import {sendData, getData} from '../controllers/dataController.js';
+
 const router = new Router()
-const {sendData, getData} = require("../controllers/dataController");
 
-router.post('/', sendData)
-router.get('/',getData)
+router.post('/', () => sendData)
+router.get('/', () => getData)
 
-module.exports = router
+export default router;
