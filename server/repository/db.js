@@ -5,12 +5,11 @@ const connection = mysql.createConnection({
     user: process.env.DB_USER,
     database: process.env.DB_NAME,
     password: process.env.DB_PASSWORD
-})
+});
 
 connection.connect((err) => {
-    if (err) {
-        throw err
-    }
-    console.log("Connected")
-})
-module.exports = connection
+    if (err) throw err;
+    console.log("Connected");
+});
+
+module.exports = connection;
