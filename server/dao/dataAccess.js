@@ -1,11 +1,10 @@
-const dbConnection = require("../repository/db");
+const connection = require("../repository/db");
 
 const getList = (req, res) => {
     const {parameter} = req.query;
-    dbConnection.query(`SELECT*FROM ${parameter}`, (err, rows) => {
+    connection().query(`SELECT*FROM ${parameter}`, (err, rows) => {
         if (err) {
-            res.status(500);
-            res.send(err);
+            res.status(500).send(err);
             return;
         }
         res.json(rows);
@@ -15,7 +14,7 @@ const getList = (req, res) => {
 const saveList = (req, res) => {
     const {parameter} = req.query;
     const list = req.body;
-    dbConnection.query(`TRUNCATE ${parameter}`, (err) => {
+    connection().query(`TRUNCATE ${parameter}`, (err) => {
         if (err) {
             res.status(500);
             res.send(err);
@@ -30,10 +29,9 @@ const saveList = (req, res) => {
         }
         const sql = `INSERT INTO ${parameter}
                      values ?`;
-        dbConnection.query(sql, [listF], (err) => {
+        connection().query(sql, [listF], (err) => {
             if (err) {
-                res.status(500);
-                res.send(err);
+                res.status(500).send(err);
                 return;
             }
             console.log('success');
