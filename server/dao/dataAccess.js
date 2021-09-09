@@ -1,7 +1,7 @@
-const connection = require("../repository/db");
+import connection from '../repository/db.js';
 
 class DataAccess {
-    static getList = (req, res) => {
+    static getList(req, res) {
         const {parameter} = req.query;
         connection().query(`SELECT*FROM ${parameter}`, (err, rows) => {
             if (err) {
@@ -12,7 +12,7 @@ class DataAccess {
         });
     }
 
-    static saveList = (req, res) => {
+    static saveList(req, res) {
         const {parameter} = req.query;
         const list = req.body;
         connection().query(`TRUNCATE ${parameter}`, (err) => {
@@ -29,7 +29,7 @@ class DataAccess {
                 listF.push(listS);
             }
             const sql = `INSERT INTO ${parameter}
-                     values ?`;
+                         values ?`;
             connection().query(sql, [listF], (err) => {
                 if (err) {
                     res.status(500).send(err);
@@ -42,5 +42,4 @@ class DataAccess {
     }
 }
 
-
-module.exports = DataAccess
+export default DataAccess;

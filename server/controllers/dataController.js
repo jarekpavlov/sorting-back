@@ -1,15 +1,13 @@
-const DataAccess = require("../dao/dataAccess");
+import DataAccess from '../dao/dataAccess.js'
 
+class DataController {
+    static getData(req, res) {
+        DataAccess.getList(req, res);
+    }
 
-const getData = (req, res) => {
-    DataAccess.getList(req, res);
+    static sendData(req, res) {
+        DataAccess.saveList(req, res);
+    }
 }
 
-const sendData = (req, res) => {
-    DataAccess.saveList(req, res);
-}
-
-module.exports = {
-    getData,
-    sendData
-}
+export default DataController;
