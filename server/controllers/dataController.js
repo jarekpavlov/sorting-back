@@ -1,11 +1,12 @@
-const {getList, saveList} = require("../dao/dataAccess");
+const DataAccess = require("../dao/dataAccess");
+
 
 const getData = (req, res) => {
-    getList(req, res);
+    DataAccess.getList(req, res);
 }
 
 const sendData = (req, res) => {
-    saveList(req, res);
+    DataAccess.saveList(req, res);
 }
 
 module.exports = {
